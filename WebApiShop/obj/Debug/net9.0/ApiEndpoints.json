@@ -1,0 +1,52 @@
+[
+  {
+    "ContainingType": "WebApiShop.Controllers.CustomerController",
+    "Method": "GetCustomers",
+    "RelativePath": "Customer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [],
+    "EndpointName": "GetCustomers"
+  },
+  {
+    "ContainingType": "WebApiShop.Controllers.OrdersController",
+    "Method": "InsertOrder",
+    "RelativePath": "Orders",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "WebApiShop.Models.ClsRequestCreateOrder",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "InsertOrder"
+  },
+  {
+    "ContainingType": "WebApiShop.Controllers.ProductController",
+    "Method": "GetProducts",
+    "RelativePath": "Product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "offset",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "GetProducts"
+  }
+]
