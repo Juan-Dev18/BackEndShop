@@ -55,7 +55,10 @@ namespace WebApiShop.Repository
                 result = await UpdateOrderTotal(orderInfo);
                 if (!string.IsNullOrEmpty(result.Message)) return result;
 
-                return await GetOrdersById(orderInfo.Order.OrderId??0);
+                result = await GetOrdersById(orderInfo.Order.OrderId ?? 0);
+                result.Message = "OK";
+
+                return result;
             }
             catch (Exception ex)
             {
@@ -95,7 +98,7 @@ namespace WebApiShop.Repository
                                         Email = reader["email"].ToString(),
                                         Phone = reader["phone"].ToString()
                                     },
-                                }
+                                },
                             };
                         }
                     }
@@ -123,13 +126,14 @@ namespace WebApiShop.Repository
                 {
                     var command = new SqlCommand("SP_AddOrderDetail", connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
+                    await connection.OpenAsync();
                     foreach (var item in orderInfo.OrderDetails!)
                     {
                         command.Parameters.Clear();
                         command.Parameters.AddWithValue("@OrderId", orderInfo.Order!.OrderId);
                         command.Parameters.AddWithValue("@ProductId", item.Product!.ProductId);
                         command.Parameters.AddWithValue("@Quantity", item.Quantity);
-                        await connection.OpenAsync();
+                        
 
                         await command.ExecuteNonQueryAsync();
 
